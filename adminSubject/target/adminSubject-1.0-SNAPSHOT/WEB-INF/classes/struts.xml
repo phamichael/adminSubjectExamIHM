@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.devMode" value="true"/>
+
+    <include file="example.xml"/>
+
+    <!-- Add addition packages and configuration here. -->
+
+    <package name="json" namespace="/" extends="json-default">
+
+        <action name="selectUser" class="actions.Admin" method="selectUser">
+            <result type="json"/>
+        </action>
+
+    </package>
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="login"/>
+
+        <action name="login">
+            <result>/WEB-INF/Login.jsp</result>
+        </action>
+
+        <action name="password" class="actions.Connection" method="login">
+            <result name="success">/WEB-INF/Password.jsp</result>
+            <result name="error">/WEB-INF/Login.jsp</result>
+        </action>
+
+        <action name="menu" class="actions.Connection" method="password">
+            <result name="success">/WEB-INF/Menu.jsp</result>
+            <result name="error">/WEB-INF/Password.jsp</result>
+        </action>
+
+        <action name="seller" class="actions.Menu" method="seller">
+            <result>/WEB-INF/Seller.jsp</result>
+        </action>
+
+        <action name="admin" class="actions.Menu" method="admin">
+            <result>/WEB-INF/Admin.jsp</result>
+        </action>
+
+        <action name="stockManager" class="actions.Menu" method="stockManager">
+            <result>/WEB-INF/StockManager.jsp</result>
+        </action>
+
+        <action name="disconnection" class="actions.Disconnection">
+            <result>/WEB-INF/Login.jsp</result>
+        </action>
+
+        <action name="addUser" class="actions.Admin" method="addUser">
+            <result>/WEB-INF/Admin.jsp</result>
+        </action>
+
+        <action name="deleteUser" class="actions.Admin" method="deleteUser">
+            <result>/WEB-INF/Admin.jsp</result>
+        </action>
+
+        <action name="updateUser" class="actions.Admin" method="updateUser">
+            <result>/WEB-INF/Admin.jsp</result>
+        </action>
+
+    </package>
+
+
+</struts>
